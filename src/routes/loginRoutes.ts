@@ -1,14 +1,12 @@
 import express,{Router} from 'express';
-import * as users from "../controller/userController"
+import dotenv from 'dotenv';
+import * as auth from '../controller/loginController'; 
 import { entryPoint } from "../middleware/entrypoint";
 import { exitPoint } from "../middleware/exitpoint";
 
 
-
 const router=Router();
 
-router.post('/user/add',entryPoint,users.addUser,exitPoint);
-
-router.post('/user/login',entryPoint,users.login,exitPoint);
+// router.post("/login",entryPoint, auth.login,exitPoint);
 
 export default router;

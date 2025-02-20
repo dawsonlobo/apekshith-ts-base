@@ -49,7 +49,6 @@ interface IData {
  */
 
 export const exitPoint: RequestHandler = (req: Request, res: Response) => {
-  console.log("xrdcftvgybhnjmkl,");
   
   const txId: string = req.txId ?? "";
   const path = req.baseUrl + req.url;

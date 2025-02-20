@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import * as users from "../../db/models/users";
+import * as users from "../../db/dynamicmodels";
 
 declare global {
   namespace Express {
@@ -61,5 +61,10 @@ export interface IProject {
 }
 
 export interface IUser extends users.IUser {
+  _id?: Schema.Types.ObjectId | unknown | string;
+}
+
+
+export interface IAdmin extends users.IAdmin {
   _id?: Schema.Types.ObjectId | unknown | string;
 }

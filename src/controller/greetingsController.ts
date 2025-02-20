@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import * as Dynamic from "../../../db/dynamicmodels";
+import * as Dynamic from "../db/dynamicmodels";
 import { CONSTANTS } from "../utils/v1/constants";
 import { IProject } from '../utils/v1/customTypes'
 import { ObjectId } from "mongodb";

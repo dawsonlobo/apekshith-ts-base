@@ -2,6 +2,8 @@ export const CONSTANTS = {
     COLLECTIONS: {
       USER_COLLECTION: "users",
       OTP_COLLECTION: "otps",
+      ACCESSTOKEN_COLLECTION: "accesstokens",
+      REFRESHTOKEN_COLLECTION: "refreshtokens",
     },
     GATES_DIRECTION: {
       IN: "IN",

@@ -1,29 +1,55 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import greeting from "./routes/greetingRoutes";
-import { TwilioService } from '../src/services/twilio/twilio';
-import message from "./routes/twilioRoutes";
-import user from "./routes/userRoutes";
-import otp from "./routes/otpRoutes";
-import chat from "./routes/openAIRoutes";
-import './models/userModels';
-import { WebSocketServer } from "ws";
-import { fetchChatCompletion } from "../src/services/openAI/ai"; // Import your fetch function
+import { TwilioService } from '../src/services/twilio/twilio'; 
+import message from "./routes/twilioRoutes"
+import user from "./routes/userRoutes"
+import otp from "./routes/otpRoutes"
+import login from "./routes/loginRoutes"
+import './models/userModels'
+import passport from "passport";
+import "../src/passport/bearer";
 import http from "http";
+import { Server } from "socket.io";
 import mongoose from 'mongoose';
 
-dotenv.config();
-
-const app = express();
-const server = http.createServer(app);  // Ensure server uses Express app
-const wss = new WebSocketServer({ server });
-
-app.use("/v1",message);
-app.use("/v1",user);
+ 
 
 
-
+const app=express();
 const mongoUrl = process.env.mongo_url || "mongodb://localhost:27017/user-otp";
+dotenv.config();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "*", 
+  },
+});
+const port=process.env.PORT;
+app.use(passport.initialize());
+app.use(express.json());
+app.use('/v1',greeting);
+app.use('/v1',message);
+app.use('/v1',user);
+app.use('/v1',otp);
+app.use('/v1',login);
+
+
+
+const testTwilio = async () => {
+const testPhoneNumber = process.env.RECIPIENT_PHONE_NUMBER || ''; 
+  const testMessage = 'Your OTP for exelon is 5559';
+
+  const result = await TwilioService.sendSMS(testPhoneNumber, testMessage);
+  console.log('Test Result:', result);
+};
+const testWhatsApp = async () => {
+  const testPhoneNumber = process.env.RECIPIENT_PHONE_NUMBER|| ''; 
+  const testMessage = 'Hello aliens';
+
+  const result = await TwilioService.sendWhatsApp(testPhoneNumber, testMessage);
+  console.log('WhatsApp Test Result:', result);
+};
 
 async function connectToDatabase() {
     try {
@@ -34,36 +60,9 @@ async function connectToDatabase() {
         process.exit(1);  
     }
 }
-
 connectToDatabase();
 
-wss.on("connection", (ws) => {
-    console.log("Client connected");
-
-    // Listen for incoming messages (questions from client)
-    ws.on("message", async (message) => {
-        console.log(`Received question: ${message}`);
-        try {
-            // Use your existing function to fetch the response from OpenRouter (ChatGPT)
-            const answer = await fetchChatCompletion(message.toString());
-            console.log(`Sending answer: ${answer}`);
-
-            // Send the answer back to the client
-            ws.send(answer);
-        } catch (error) {
-            console.error("Error while fetching answer:", error);
-            ws.send("Sorry, there was an error processing your question.");
-        }
-    });
-
-    ws.on("close", () => {
-        console.log("Client disconnected");
-    });
-});
-
-
-
-
-server.listen(3000, () => {
-    console.log("WebSocket server running on port 3000");
-});
+app.listen(port,()=>{
+    console.log(`running on http://localhost:${port}`);
+    
+})

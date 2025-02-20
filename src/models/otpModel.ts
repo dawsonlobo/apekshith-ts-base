@@ -3,7 +3,7 @@ import { CONSTANTS } from "../utils/v1/constants";
 import { addJson, findJsonInJsonArray } from "../utils/v1/helper";
 import { Document, model, Schema, SchemaOptions } from "mongoose";
 import { config } from "../utils/v1/config";
-import { schema } from "../../../db/dynamicmodels";
+import { schema } from "../db/dynamicmodels";
 
 
 export interface Iotp{

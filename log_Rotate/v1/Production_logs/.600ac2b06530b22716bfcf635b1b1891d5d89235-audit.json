@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "H:\\work_space\\exelon\\for git upload\\apekshith-ts-base\\log_Rotate\\v1\\Production_logs\\.600ac2b06530b22716bfcf635b1b1891d5d89235-audit.json",
+    "files": [
+        {
+            "date": 1740026119733,
+            "name": "H:\\work_space\\exelon\\for git upload\\apekshith-ts-base\\log_Rotate\\v1\\Production_logs\\20-02-2025.log",
+            "hash": "12d1e6460e872db9ad1d4c0a123302c9cc5bba3ea5fa67f6f70d4eeeb326a50a"
+        }
+    ],
+    "hashType": "sha256"
+}
