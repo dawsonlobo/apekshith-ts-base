@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "H:\\work_space\\exelon\\tp\\log_Rotate\\v1\\Production_logs\\.c2d631d9c1d65e6f598c07486e104779e092b9a0-audit.json",
+    "files": [
+        {
+            "date": 1739937326848,
+            "name": "H:\\work_space\\exelon\\tp\\log_Rotate\\v1\\Production_logs\\19-02-2025.log",
+            "hash": "e561dcbb7c3fb742222a5790fb71e8f45f0aa2e65e19c6a38abaeb7e1fe8e2d7"
+        },
+        {
+            "date": 1740023613781,
+            "name": "H:\\work_space\\exelon\\tp\\log_Rotate\\v1\\Production_logs\\20-02-2025.log",
+            "hash": "d6c70f1a2b9a12b2045e0d8cb7eeeab2aa9301d4c995b2f6809f26ad3492d06f"
+        }
+    ],
+    "hashType": "sha256"
+}
