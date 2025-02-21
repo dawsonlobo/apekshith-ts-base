@@ -12,6 +12,11 @@ router.post('/user/add',entryPoint,users.addUser,exitPoint);
 router.post('/user/login',entryPoint,users.login,exitPoint);
 
 
+router.post('/user/get',entryPoint,users.getUser,exitPoint);
+
+router.post('/user/update',entryPoint,users.updateProfile,exitPoint);
+
+
 router.get('/user/greet',entryPoint,passport.authenticate("bearer", { session: false }),users.greet,exitPoint);
 
 
