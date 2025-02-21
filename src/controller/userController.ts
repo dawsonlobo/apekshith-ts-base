@@ -45,7 +45,7 @@ export async function addUser (req: Request, res: Response,next:NextFunction):Pr
           return;
         }
        }
-catch(error){
+  catch(error){
     req.apiStatus = {
         isSuccess: false,
         error: ErrorCodes[1010],
@@ -88,13 +88,27 @@ export async function login(req:Request, res:Response,next:NextFunction):Promise
     await newRefreshToken.save(); // Save the refresh token in the database
 
     await user.save();
-
-    res.json({ accessToken, refreshToken });
-  } catch (error) {
-    res.status(500).json({ message: "Server error" });
-  }
+    req.apiStatus = {
+      isSuccess: true,
+      data: {
+        access_token: accessToken,
+        refresh_token: refreshToken,
+      },
+      toastMessage: "Login successful",
+    };
+    next();
+    return;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      logger.error(`${error.message} `);
+      req.apiStatus = {
+        isSuccess: false,
+        error: ErrorCodes[1012],
+        data: error.message || "Login failed",
+        toastMessage: "Login failed",
+      };
+    }
 };
-
 
 
 

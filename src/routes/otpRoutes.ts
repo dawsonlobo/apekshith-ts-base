@@ -3,7 +3,6 @@ import * as otp from "../controller/otpController"
 import { entryPoint } from "../middleware/entrypoint";
 import { exitPoint } from "../middleware/exitpoint";
 import "../passport/newpassport";
-import passport, { session } from 'passport';
 
 
 

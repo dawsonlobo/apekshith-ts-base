@@ -14,7 +14,16 @@ router.post('/user/login',entryPoint,users.login,exitPoint);
 
 router.post('/user/get',entryPoint,users.getUser,exitPoint);
 
+
 router.post('/user/update',entryPoint,users.updateProfile,exitPoint);
+
+
+router.post("/logout", passport.authenticate("bearer", { session: false }), async (req, res) => {
+    const user = req.user as any;
+    user.refreshToken = null;
+    await user.save();
+    res.json({ message: "Logged out successfully" });
+  });
 
 
 router.get('/user/greet',entryPoint,passport.authenticate("bearer", { session: false }),users.greet,exitPoint);
