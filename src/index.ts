@@ -5,7 +5,7 @@ import { TwilioService } from '../src/services/twilio/twilio';
 import message from "./routes/twilioRoutes"
 import user from "./routes/userRoutes"
 import otp from "./routes/otpRoutes"
-import login from "./routes/loginRoutes"
+// import login from "./routes/loginRoutes"
 import './models/userModels'
 import passport from "passport";
 import "../src/passport/bearer";
@@ -32,7 +32,7 @@ app.use('/v1',greeting);
 app.use('/v1',message);
 app.use('/v1',user);
 app.use('/v1',otp);
-app.use('/v1',login);
+// app.use('/v1',login);
 
 
 

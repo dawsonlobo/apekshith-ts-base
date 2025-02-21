@@ -130,3 +130,9 @@ export async function login(req:Request, res:Response,next:NextFunction):Promise
       res.status(500).json({ message: "Server error" });
     }
   };
+
+export async function greet(){
+  console.log("Hello")  ;
+ 
+  
+}
